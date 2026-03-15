@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INEB "Domingo Juarros" — Instituto Nacional de Educación Básica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy: #0a1f44;
+      --royal: #1a3a7c;
+      --sky: #2563eb;
+      --gold: #c9a227;
+      --gold-light: #e8c84a;
+      --white: #ffffff;
+      --off-white: #f4f6fb;
+      --gray: #6b7280;
+      --light-gray: #e5e9f2;
+      --text: #1e2a3a;
+      --shadow: 0 4px 24px rgba(10,31,68,0.10);
+      --shadow-lg: 0 8px 40px rgba(10,31,68,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ══════════════════════════════
+       TOPBAR
+    ══════════════════════════════ */
+    .topbar {
+      background: var(--navy);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.78rem;
+      padding: 0.4rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .topbar span { display: flex; align-items: center; gap: 0.4rem; }
+    .topbar a { color: var(--gold-light); text-decoration: none; }
+
+    /* ══════════════════════════════
+       NAVBAR
+    ══════════════════════════════ */
+    nav {
+      background: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--navy) 60%, var(--gold) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      flex-shrink: 0;
+      box-shadow: 0 2px 10px rgba(10,31,68,0.25);
+    }
+
+    .brand-text { line-height: 1.1; }
+    .brand-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--navy);
+      font-weight: 700;
+    }
+    .brand-text small {
+      font-size: 0.68rem;
+      color: var(--gray);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: var(--royal);
+      color: var(--white);
+    }
+    .nav-links a.active { background: var(--navy); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      border: none;
+      background: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ══════════════════════════════
+       HERO / SLIDER
+    ══════════════════════════════ */
+    .hero {
+      position: relative;
+      height: 520px;
+      overflow: hidden;
+      background: var(--navy);
+    }
+
+    .slides-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.7s cubic-bezier(.77,0,.18,1);
+    }
+
+    .slide {
+      min-width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Placeholder gradient slides (replace with real images) */
+    .slide:nth-child(1) .slide-bg {
+      background: linear-gradient(135deg, #0a1f44 0%, #1a3a7c 40%, #1e4fb0 100%);
+    }
+    .slide:nth-child(2) .slide-bg {
+      background: linear-gradient(135deg, #0d2a52 0%, #c9a227 60%, #e8c84a 100%);
+    }
+    .slide:nth-child(3) .slide-bg {
+      background: linear-gradient(135deg, #122060 0%, #0e3364 40%, #2563eb 100%);
+    }
+    .slide:nth-child(4) .slide-bg {
+      background: linear-gradient(135deg, #1c1c3a 0%, #3b5998 60%, #0a1f44 100%);
+    }
+
+    .slide-bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .slide-bg-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.35;
+    }
+
+    /* Geometric overlay for depth */
+    .slide-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 60L60 0' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3C/svg%3E");
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+      max-width: 700px;
+    }
+
+    .slide-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+
+    .slide-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    }
+
+    .slide-content p {
+      font-size: 1rem;
+      opacity: 0.88;
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .slide-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.65rem 1.8rem;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .slide-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .slider-controls {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      z-index: 5;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .dot.active {
+      background: var(--gold);
+      transform: scale(1.2);
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.3);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s;
+      backdrop-filter: blur(4px);
+    }
+    .slider-arrow:hover { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+    .arrow-prev { left: 1.25rem; }
+    .arrow-next { right: 1.25rem; }
+
+    /* ══════════════════════════════
+       SECTIONS COMMON
+    ══════════════════════════════ */
+    section { padding: 4rem 1.5rem; }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin-top: 0.6rem;
+    }
+
+    /* ══════════════════════════════
+       QUICK STATS
+    ══════════════════════════════ */
+    .stats-strip {
+      background: var(--navy);
+      padding: 2rem 1.5rem;
+    }
+
+    .stats-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-item { color: white; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--gold);
+      display: block;
+    }
+    .stat-label { font-size: 0.82rem; opacity: 0.75; margin-top: 0.2rem; }
+
+    /* ══════════════════════════════
+       AVISOS / TABLÓN
+    ══════════════════════════════ */
+    #avisos { background: var(--off-white); }
+
+    .avisos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .aviso-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.4rem;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--royal);
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+    .aviso-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .aviso-card.urgente { border-left-color: #dc2626; }
+    .aviso-card.nuevo { border-left-color: #16a34a; }
+
+    .aviso-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      margin-bottom: 0.75rem;
+    }
+    .tag-urgente { background: #fef2f2; color: #dc2626; }
+    .tag-nuevo { background: #f0fdf4; color: #16a34a; }
+    .tag-info { background: #eff6ff; color: var(--royal); }
+
+    .aviso-card h3 {
+      font-size: 0.97rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .aviso-card p { font-size: 0.85rem; color: var(--gray); line-height: 1.55; }
+    .aviso-date { font-size: 0.75rem; color: var(--gray); margin-top: 0.75rem; display: flex; align-items: center; gap: 0.3rem; }
+
+    /* ══════════════════════════════
+       ACADÉMICO / NOSOTROS
+    ══════════════════════════════ */
+    #nosotros { background: white; }
+
+    .nosotros-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    .nosotros-img-block {
+      position: relative;
+    }
+
+    .nosotros-img {
+      width: 100%;
+      height: 340px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--royal) 60%, var(--sky) 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      color: rgba(255,255,255,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nosotros-img::before {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: var(--gold);
+      opacity: 0.15;
+      border-radius: 50%;
+      bottom: -60px;
+      right: -40px;
+    }
+
+    .accent-box {
+      position: absolute;
+      bottom: -1rem;
+      right: -1rem;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 1.25rem 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .accent-box strong { display: block; font-family: 'Playfair Display', serif; font-size: 1.8rem; }
+    .accent-box span { font-size: 0.78rem; font-weight: 600; }
+
+    .nosotros-text h2 { margin-bottom: 1rem; }
+    .nosotros-text p { color: var(--gray); line-height: 1.7; margin-bottom: 1rem; font-size: 0.95rem; }
+
+    .values-list { list-style: none; margin-top: 1.2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .values-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+    .values-list li i { color: var(--gold); font-size: 0.75rem; }
+
+    /* ══════════════════════════════
+       ACADEMIC SECTION
+    ══════════════════════════════ */
+    #academico { background: var(--off-white); }
+
+    .grados-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .grado-card {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .grado-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+
+    .grado-header {
+      background: var(--navy);
+      color: white;
+      padding: 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .grado-header::after {
+      content: '';
+      position: absolute;
+      right: -20px;
+      top: -20px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .grado-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .grado-header h3 { font-size: 1rem; font-weight: 600; margin-top: 0.2rem; }
+
+    .grado-body { padding: 1.25rem; }
+    .grado-materia {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--text);
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--light-gray);
+    }
+    .grado-materia:last-child { border-bottom: none; }
+    .grado-materia i { color: var(--royal); width: 16px; }
+
+    /* ══════════════════════════════
+       DESCARGAS
+    ══════════════════════════════ */
+    #descargas { background: white; }
+
+    .descargas-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 0.5rem 1.2rem;
+      border: 2px solid var(--light-gray);
+      border-radius: 25px;
+      background: white;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+
+    .descargas-list { display: none; }
+    .descargas-list.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+
+    .archivo-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--light-gray);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .archivo-card:hover {
+      border-color: var(--sky);
+      box-shadow: 0 2px 12px rgba(37,99,235,0.12);
+      background: #f0f5ff;
+    }
+
+    .file-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .icon-pdf { background: #fef2f2; color: #dc2626; }
+    .icon-word { background: #eff6ff; color: #2563eb; }
+    .icon-excel { background: #f0fdf4; color: #16a34a; }
+
+    .archivo-info { flex: 1; min-width: 0; }
+    .archivo-info strong { display: block; font-size: 0.88rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .archivo-info small { font-size: 0.74rem; color: var(--gray); }
+    .archivo-card i.fa-download { color: var(--gray); font-size: 0.85rem; }
+
+    /* ══════════════════════════════
+       GALERÍA
+    ══════════════════════════════ */
+    #galeria { background: var(--off-white); }
+
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .gal-item {
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .gal-item:first-child { grid-column: span 2; grid-row: span 2; }
+    .gal-item:nth-child(4) { grid-column: span 2; }
+
+    .gal-inner {
+      width: 100%;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: rgba(255,255,255,0.5);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s;
+    }
+    .gal-item:first-child .gal-inner { height: 337px; }
+    .gal-item:nth-child(4) .gal-inner { height: 160px; }
+
+    .gal-item:hover .gal-inner { transform: scale(1.06); }
+
+    .gal-item:nth-child(1) .gal-inner { background: linear-gradient(135deg, #0a1f44, #1a3a7c); }
+    .gal-item:nth-child(2) .gal-inner { background: linear-gradient(135deg, #1a3a7c, #2563eb); }
+    .gal-item:nth-child(3) .gal-inner { background: linear-gradient(135deg, #c9a227, #e8c84a); }
+    .gal-item:nth-child(4) .gal-inner { background: linear-gradient(135deg, #0d2a52, #1a4080); }
+    .gal-item:nth-child(5) .gal-inner { background: linear-gradient(135deg, #122060, #2563eb); }
+    .gal-item:nth-child(6) .gal-inner { background: linear-gradient(135deg, #1c2a50, #c9a227); }
+
+    .gal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,31,68,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      color: white;
+      font-size: 1.5rem;
+    }
+    .gal-item:hover .gal-overlay { opacity: 1; }
+
+    /* ══════════════════════════════
+       NOTICIAS / BLOG
+    ══════════════════════════════ */
+    #noticias { background: white; }
+
+    .noticias-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .noticia-featured {
+      background: var(--off-white);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: box-shadow 0.25s;
+    }
+    .noticia-featured:hover { box-shadow: var(--shadow-lg); }
+
+    .noticia-featured-img {
+      height: 220px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--royal) 60%, var(--sky) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: rgba(255,255,255,0.2);
+      position: relative;
+    }
+
+    .noticia-cat {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .noticia-featured-body { padding: 1.5rem; }
+    .noticia-featured-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+    }
+    .noticia-featured-body p { font-size: 0.88rem; color: var(--gray); line-height: 1.65; }
+    .noticia-meta { font-size: 0.75rem; color: var(--gray); margin-top: 0.75rem; display: flex; gap: 1rem; }
+    .noticia-meta span { display: flex; align-items: center; gap: 0.3rem; }
+
+    .noticias-sidebar { display: flex; flex-direction: column; gap: 1rem; }
+
+    .noticia-mini {
+      display: flex;
+      gap: 0.9rem;
+      padding: 0.9rem;
+      border-radius: 10px;
+      background: var(--off-white);
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .noticia-mini:hover { background: var(--light-gray); }
+
+    .noticia-mini-img {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .noticia-mini:nth-child(1) .noticia-mini-img { background: linear-gradient(135deg, var(--navy), var(--royal)); color: rgba(255,255,255,0.4); }
+    .noticia-mini:nth-child(2) .noticia-mini-img { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: rgba(10,31,68,0.4); }
+    .noticia-mini:nth-child(3) .noticia-mini-img { background: linear-gradient(135deg, var(--sky), var(--royal)); color: rgba(255,255,255,0.4); }
+    .noticia-mini:nth-child(4) .noticia-mini-img { background: linear-gradient(135deg, #2d4a22, #4a7c35); color: rgba(255,255,255,0.4); }
+
+    .noticia-mini-body h4 { font-size: 0.84rem; font-weight: 600; color: var(--navy); line-height: 1.35; margin-bottom: 0.3rem; }
+    .noticia-mini-body small { font-size: 0.72rem; color: var(--gray); }
+
+    /* ══════════════════════════════
+       CONTACTO STRIP
+    ══════════════════════════════ */
+    .contacto-strip {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--royal) 100%);
+      padding: 3.5rem 1.5rem;
+      text-align: center;
+      color: white;
+    }
+
+    .contacto-strip h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .contacto-strip p { opacity: 0.8; font-size: 0.95rem; margin-bottom: 2rem; }
+
+    .contacto-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.75rem 1.8rem;
+      border-radius: 30px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 2px solid rgba(255,255,255,0.4);
+      color: white;
+      padding: 0.75rem 1.8rem;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer {
+      background: #040e1e;
+      color: rgba(255,255,255,0.7);
+      padding: 3rem 1.5rem 1.5rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .footer-brand { }
+    .footer-brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .footer-logo-circle {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--royal), var(--gold));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.2rem;
+    }
+    .footer-brand-logo strong { color: white; font-size: 0.95rem; }
+    .footer-brand p { font-size: 0.82rem; line-height: 1.65; max-width: 260px; }
+
+    .footer-col h4 {
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.84rem;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--gold-light); }
+
+    .footer-contact-item {
+      display: flex;
+      gap: 0.6rem;
+      font-size: 0.83rem;
+      margin-bottom: 0.6rem;
+      align-items: flex-start;
+    }
+    .footer-contact-item i { color: var(--gold); margin-top: 0.15rem; flex-shrink: 0; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .footer-bottom p { font-size: 0.78rem; }
+    .footer-social { display: flex; gap: 0.6rem; }
+    .footer-social a {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .footer-social a:hover { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+
+    /* ══════════════════════════════
+       WHATSAPP FLOAT
+    ══════════════════════════════ */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 1.75rem;
+      right: 1.75rem;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .wa-tooltip {
+      background: white;
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      box-shadow: var(--shadow-lg);
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(10px);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+    }
+
+    .whatsapp-float:hover .wa-tooltip {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .wa-btn {
+      width: 58px;
+      height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.6rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: wa-pulse 2.5s infinite;
+    }
+    .wa-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.6); }
+
+    @keyframes wa-pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.45); }
+      50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7), 0 0 0 10px rgba(37,211,102,0.08); }
+    }
+
+    /* ══════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════ */
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: var(--shadow-lg);
+        border-top: 1px solid var(--light-gray);
+        gap: 0.2rem;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 0.65rem 1rem; }
+      .hamburger { display: flex; }
+      .nav-inner { position: relative; }
+
+      .nosotros-grid { grid-template-columns: 1fr; }
+      .nosotros-img-block { display: none; }
+      .grados-grid { grid-template-columns: 1fr; }
+      .noticias-grid { grid-template-columns: 1fr; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; }
+      .gal-item:first-child { grid-column: span 2; }
+      .gal-item:nth-child(4) { grid-column: span 1; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero { height: 420px; }
+    }
+
+    @media (max-width: 560px) {
+      .topbar { display: none; }
+      .hero { height: 360px; }
+      .slide-content h1 { font-size: 1.4rem; }
+      .galeria-grid { grid-template-columns: 1fr; }
+      .gal-item:first-child, .gal-item:nth-child(4) { grid-column: span 1; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .nosotros-img { display: none; }
+      section { padding: 2.5rem 1rem; }
+    }
+
+    /* Scroll reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+      <span><i class="fas fa-map-marker-alt"></i> Morales, Izabal, Guatemala</span>
+      <span><i class="fas fa-phone"></i> <a href="tel:+50241422653">+502 4142 2653</a></span>
+    </div>
+    <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+      <span><i class="fas fa-clock"></i> Lun – Vie: 7:00 – 13:00</span>
+      <span><i class="fas fa-envelope"></i> inebdomingjuarros@mineduc.gob.gt</span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#inicio" class="brand">
+        <div class="brand-logo">DJ</div>
+        <div class="brand-text">
+          <strong>INEB "Domingo Juarros"</strong>
+          <small>Instituto Nacional de Educación Básica</small>
+        </div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio" class="active">Inicio</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#academico">Académico</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#noticias">Noticias</a></li>
+        <li><a href="#descargas">Descargas</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO / SLIDER -->
+  <section id="inicio" style="padding:0;position:relative;">
+    <div class="hero">
+      <div class="slides-track" id="slidesTrack">
+
+        <div class="slide">
+          <div class="slide-bg">
+            <div class="slide-bg-img" style="background-image:url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1200')"></div>
+          </div>
+          <div class="slide-content">
+            <span class="slide-badge"><i class="fas fa-star"></i> Ciclo Escolar 2025</span>
+            <h1>Formando Líderes<br>para Guatemala</h1>
+            <p>Educación pública de calidad con valores, disciplina y excelencia académica en el corazón de Izabal.</p>
+            <a href="#nosotros" class="slide-btn">Conócenos <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="slide-bg">
+            <div class="slide-bg-img" style="background-image:url('https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200')"></div>
+          </div>
+          <div class="slide-content">
+            <span class="slide-badge"><i class="fas fa-trophy"></i> Logros 2024</span>
+            <h1>Excelencia Académica<br>en Cada Grado</h1>
+            <p>Nuestros estudiantes de 1ero, 2do y 3ero Básico alcanzan los más altos estándares educativos nacionales.</p>
+            <a href="#academico" class="slide-btn">Ver Currículo <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="slide-bg">
+            <div class="slide-bg-img" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200')"></div>
+          </div>
+          <div class="slide-content">
+            <span class="slide-badge"><i class="fas fa-download"></i> Material Didáctico</span>
+            <h1>Portal de Descargas<br>para Padres y Alumnos</h1>
+            <p>Accede a guías, circulares, horarios y material de apoyo directamente desde tu celular.</p>
+            <a href="#descargas" class="slide-btn">Ir a Descargas <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="slide-bg">
+            <div class="slide-bg-img" style="background-image:url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1200')"></div>
+          </div>
+          <div class="slide-content">
+            <span class="slide-badge"><i class="fas fa-bell"></i> Inscripciones Abiertas</span>
+            <h1>Inscripciones<br>Ciclo 2026 Abiertas</h1>
+            <p>Asegura el lugar de tu hijo/a en el INEB Domingo Juarros. Cupos limitados para el nuevo ciclo escolar.</p>
+            <a href="https://wa.me/50241422653" class="slide-btn">Consultar por WhatsApp <i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="slider-arrow arrow-prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+      <button class="slider-arrow arrow-next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+
+      <div class="slider-controls" id="sliderDots"></div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <span class="stat-num">500+</span>
+        <div class="stat-label">Estudiantes Matriculados</div>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-num">30+</span>
+        <div class="stat-label">Docentes Calificados</div>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-num">3</span>
+        <div class="stat-label">Grados de Educación Básica</div>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-num">15+</span>
+        <div class="stat-label">Años de Trayectoria</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AVISOS -->
+  <section id="avisos">
+    <div class="container">
+      <p class="section-label"><i class="fas fa-bullhorn"></i> Tablón de Anuncios</p>
+      <h2 class="section-title">Avisos para Padres de Familia</h2>
+      <div class="avisos-grid">
+
+        <div class="aviso-card urgente reveal">
+          <span class="aviso-tag tag-urgente"><i class="fas fa-exclamation-triangle"></i> Urgente</span>
+          <h3>Entrega de Calificaciones — 3er Bimestre</h3>
+          <p>Se informa a los padres de familia que la entrega de notas del tercer bimestre se realizará el próximo <strong>viernes 21 de marzo</strong> de 8:00 a 12:00 hrs. Presentarse con DPI.</p>
+          <div class="aviso-date"><i class="fas fa-calendar-alt"></i> 14 de marzo, 2026</div>
+        </div>
+
+        <div class="aviso-card nuevo reveal">
+          <span class="aviso-tag tag-nuevo"><i class="fas fa-sparkles"></i> Nuevo</span>
+          <h3>Apertura de Inscripciones para Ciclo 2026</h3>
+          <p>Ya están abiertas las inscripciones para el ciclo escolar 2026. Acuda a la secretaría del instituto con partida de nacimiento, DPI del padre y boletas de pago del ciclo anterior.</p>
+          <div class="aviso-date"><i class="fas fa-calendar-alt"></i> 10 de marzo, 2026</div>
+        </div>
+
+        <div class="aviso-card reveal">
+          <span class="aviso-tag tag-info"><i class="fas fa-info-circle"></i> Información</span>
+          <h3>Semana de Arte y Cultura — Programa</h3>
+          <p>Del 25 al 29 de marzo se celebrará la Semana de Arte y Cultura del instituto. Se invita a padres y comunidad a los actos finales del día viernes a las 10:00 hrs.</p>
+          <div class="aviso-date"><i class="fas fa-calendar-alt"></i> 8 de marzo, 2026</div>
+        </div>
+
+        <div class="aviso-card urgente reveal">
+          <span class="aviso-tag tag-urgente"><i class="fas fa-exclamation-triangle"></i> Urgente</span>
+          <h3>Pago de Cuotas — Vence Fin de Mes</h3>
+          <p>Recordatorio a padres de familia: la cuota de mantenimiento del mes de marzo vence el <strong>31 de marzo</strong>. Pagos en tesorería del establecimiento, de 8:00 a 12:00.</p>
+          <div class="aviso-date"><i class="fas fa-calendar-alt"></i> 5 de marzo, 2026</div>
+        </div>
+
+        <div class="aviso-card nuevo reveal">
+          <span class="aviso-tag tag-nuevo"><i class="fas fa-sparkles"></i> Nuevo</span>
+          <h3>Reunión General de Padres — 1ero Básico</h3>
+          <p>Se convoca a padres de familia de 1ero Básico a reunión general el martes 18 de marzo a las 9:00 hrs. en el aula magna. Asistencia obligatoria.</p>
+          <div class="aviso-date"><i class="fas fa-calendar-alt"></i> 3 de marzo, 2026</div>
+        </div>
+
+        <div class="aviso-card reveal">
+          <span class="aviso-tag tag-info"><i class="fas fa-info-circle"></i> Información</span>
+          <h3>Uso del Uniforme Escolar — Recordatorio</h3>
+          <p>Se recuerda a todos los estudiantes que el uso del uniforme completo es obligatorio. El incumplimiento reiterativo será reportado a los padres de familia.</p>
+          <div class="aviso-date"><i class="fas fa-calendar-alt"></i> 1 de marzo, 2026</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros">
+    <div class="container">
+      <div class="nosotros-grid">
+        <div class="nosotros-img-block">
+          <div class="nosotros-img">
+            <i class="fas fa-school"></i>
+          </div>
+          <div class="accent-box">
+            <strong>2009</strong>
+            <span>Año de Fundación</span>
+          </div>
+        </div>
+        <div class="nosotros-text reveal">
+          <p class="section-label"><i class="fas fa-landmark"></i> Nuestra Institución</p>
+          <h2 class="section-title">INEB "Domingo Juarros"</h2>
+          <p>El Instituto Nacional de Educación Básica "Domingo Juarros" es un establecimiento público comprometido con brindar una educación de calidad a la juventud de Morales, Izabal, fundamentada en valores, disciplina y la búsqueda constante de la excelencia académica.</p>
+          <p>Nuestro modelo educativo integra la preparación académica con el desarrollo integral de los estudiantes, formando ciudadanos con habilidades para enfrentar los retos del siglo XXI y contribuir al desarrollo de Guatemala.</p>
+          <ul class="values-list">
+            <li><i class="fas fa-check-circle"></i> Excelencia Académica</li>
+            <li><i class="fas fa-check-circle"></i> Valores y Ética</li>
+            <li><i class="fas fa-check-circle"></i> Inclusión Educativa</li>
+            <li><i class="fas fa-check-circle"></i> Identidad Cultural</li>
+            <li><i class="fas fa-check-circle"></i> Innovación Pedagógica</li>
+            <li><i class="fas fa-check-circle"></i> Comunidad y Familia</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADÉMICO -->
+  <section id="academico">
+    <div class="container">
+      <p class="section-label"><i class="fas fa-graduation-cap"></i> Oferta Educativa</p>
+      <h2 class="section-title">Plan de Estudios</h2>
+      <div class="grados-grid">
+
+        <div class="grado-card reveal">
+          <div class="grado-header">
+            <div class="grado-num">1°</div>
+            <h3>Primero Básico</h3>
+          </div>
+          <div class="grado-body">
+            <div class="grado-materia"><i class="fas fa-book-open"></i> Comunicación y Lenguaje</div>
+            <div class="grado-materia"><i class="fas fa-calculator"></i> Matemáticas</div>
+            <div class="grado-materia"><i class="fas fa-flask"></i> Ciencias Naturales</div>
+            <div class="grado-materia"><i class="fas fa-globe-americas"></i> Estudios Sociales</div>
+            <div class="grado-materia"><i class="fas fa-cross"></i> Formación Ciudadana</div>
+            <div class="grado-materia"><i class="fas fa-laptop-code"></i> Productividad y Desarrollo</div>
+            <div class="grado-materia"><i class="fas fa-palette"></i> Expresión Artística</div>
+            <div class="grado-materia"><i class="fas fa-running"></i> Educación Física</div>
+          </div>
+        </div>
+
+        <div class="grado-card reveal">
+          <div class="grado-header" style="background:linear-gradient(135deg,#0d2a52,#1a4080)">
+            <div class="grado-num">2°</div>
+            <h3>Segundo Básico</h3>
+          </div>
+          <div class="grado-body">
+            <div class="grado-materia"><i class="fas fa-book-open"></i> Comunicación y Lenguaje</div>
+            <div class="grado-materia"><i class="fas fa-calculator"></i> Matemáticas</div>
+            <div class="grado-materia"><i class="fas fa-flask"></i> Física y Química</div>
+            <div class="grado-materia"><i class="fas fa-globe-americas"></i> Ciencias Sociales</div>
+            <div class="grado-materia"><i class="fas fa-language"></i> Inglés</div>
+            <div class="grado-materia"><i class="fas fa-laptop-code"></i> Informática Aplicada</div>
+            <div class="grado-materia"><i class="fas fa-palette"></i> Arte y Creatividad</div>
+            <div class="grado-materia"><i class="fas fa-running"></i> Educación Física</div>
+          </div>
+        </div>
+
+        <div class="grado-card reveal">
+          <div class="grado-header" style="background:linear-gradient(135deg,#122060,#2563eb)">
+            <div class="grado-num">3°</div>
+            <h3>Tercero Básico</h3>
+          </div>
+          <div class="grado-body">
+            <div class="grado-materia"><i class="fas fa-book-open"></i> Comunicación y Lenguaje</div>
+            <div class="grado-materia"><i class="fas fa-calculator"></i> Matemáticas Avanzadas</div>
+            <div class="grado-materia"><i class="fas fa-atom"></i> Biología y Ecología</div>
+            <div class="grado-materia"><i class="fas fa-globe-americas"></i> Historia de Guatemala</div>
+            <div class="grado-materia"><i class="fas fa-language"></i> Inglés Intermedio</div>
+            <div class="grado-materia"><i class="fas fa-laptop-code"></i> TIC y Programación Básica</div>
+            <div class="grado-materia"><i class="fas fa-music"></i> Cultura y Artes</div>
+            <div class="grado-materia"><i class="fas fa-running"></i> Educación Física</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DESCARGAS -->
+  <section id="descargas">
+    <div class="container">
+      <p class="section-label"><i class="fas fa-folder-open"></i> Recursos Escolares</p>
+      <h2 class="section-title">Portal de Descargas</h2>
+      <p style="color:var(--gray);font-size:0.9rem;margin-top:-0.5rem;">Material didáctico, circulares y formularios organizados por grado.</p>
+
+      <div class="descargas-tabs">
+        <button class="tab-btn active" data-tab="primero">1ero Básico</button>
+        <button class="tab-btn" data-tab="segundo">2do Básico</button>
+        <button class="tab-btn" data-tab="tercero">3ero Básico</button>
+        <button class="tab-btn" data-tab="general">General / Dirección</button>
+      </div>
+
+      <div class="descargas-list active" id="tab-primero">
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
+          <div class="archivo-info"><strong>Guía de Matemáticas — Unidad 1</strong><small>PDF · 2.4 MB · Actualizado: mar 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-word"><i class="fas fa-file-word"></i></div>
+          <div class="archivo-info"><strong>Actividades de Lenguaje — Bimestre 1</strong><small>DOCX · 1.1 MB · feb 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
+          <div class="archivo-info"><strong>Circular Reunión Padres — Marzo</strong><small>PDF · 340 KB · mar 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
+          <div class="archivo-info"><strong>Horario de Clases 2026</strong><small>PDF · 280 KB · ene 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-excel"><i class="fas fa-file-excel"></i></div>
+          <div class="archivo-info"><strong>Lista de Útiles Escolares</strong><small>XLSX · 95 KB · ene 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
+          <div class="archivo-info"><strong>Reglamento Interno Estudiantil</strong><small>PDF · 560 KB · ene 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+      </div>
+
+      <div class="descargas-list" id="tab-segundo">
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
+          <div class="archivo-info"><strong>Física Básica — Guía Práctica</strong><small>PDF · 3.1 MB · mar 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-word"><i class="fas fa-file-word"></i></div>
+          <div class="archivo-info"><strong>Proyecto Ciencias Sociales — Bim. 1</strong><small>DOCX · 780 KB · feb 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
+          <div class="archivo-info"><strong>Inglés: Vocabulary Unit 2</strong><small>PDF · 1.2 MB · feb 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
+          <div class="archivo-info"><strong>Horario de Clases 2026</strong><small>PDF · 280 KB · ene 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-excel"><i class="fas fa-file-excel"></i></div>
+          <div class="archivo-info"><strong>Cronograma de Evaluaciones</strong><small>XLSX · 120 KB · ene 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+      </div>
+
+      <div class="descargas-list" id="tab-tercero">
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
+          <div class="archivo-info"><strong>Matemáticas Avanzadas — Álgebra</strong><small>PDF · 4.2 MB · mar 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
+          <div class="archivo-info"><strong>Biología: Ecosistemas de Guatemala</strong><small>PDF · 2.8 MB · feb 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-word"><i class="fas fa-file-word"></i></div>
+          <div class="archivo-info"><strong>Ensayo Historia — Guía de Redacción</strong><small>DOCX · 640 KB · feb 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
+          <div class="archivo-info"><strong>Inglés Intermedio — Reading Comp.</strong><small>PDF · 1.5 MB · mar 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
+          <div class="archivo-info"><strong>Horario de Clases 2026</strong><small>PDF · 280 KB · ene 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+      </div>
+
+      <div class="descargas-list" id="tab-general">
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
+          <div class="archivo-info"><strong>Reglamento General del Instituto</strong><small>PDF · 1.8 MB · ene 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
+          <div class="archivo-info"><strong>Formulario de Inscripción 2026</strong><small>PDF · 480 KB · ene 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-word"><i class="fas fa-file-word"></i></div>
+          <div class="archivo-info"><strong>Solicitud de Certificación de Estudios</strong><small>DOCX · 220 KB · ene 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+        <a href="#" class="archivo-card">
+          <div class="file-icon icon-pdf"><i class="fas fa-file-pdf"></i></div>
+          <div class="archivo-info"><strong>Calendario Escolar MINEDUC 2026</strong><small>PDF · 900 KB · ene 2026</small></div>
+          <i class="fas fa-download"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section id="galeria">
+    <div class="container">
+      <p class="section-label"><i class="fas fa-images"></i> Galería Fotográfica</p>
+      <h2 class="section-title">Nuestras Instalaciones y Eventos</h2>
+      <div class="galeria-grid reveal">
+        <div class="gal-item">
+          <div class="gal-inner"><i class="fas fa-school"></i><div class="gal-overlay"><i class="fas fa-expand"></i></div></div>
+        </div>
+        <div class="gal-item">
+          <div class="gal-inner"><i class="fas fa-users"></i><div class="gal-overlay"><i class="fas fa-expand"></i></div></div>
+        </div>
+        <div class="gal-item">
+          <div class="gal-inner"><i class="fas fa-trophy"></i><div class="gal-overlay"><i class="fas fa-expand"></i></div></div>
+        </div>
+        <div class="gal-item">
+          <div class="gal-inner"><i class="fas fa-chalkboard-teacher"></i><div class="gal-overlay"><i class="fas fa-expand"></i></div></div>
+        </div>
+        <div class="gal-item">
+          <div class="gal-inner"><i class="fas fa-flask"></i><div class="gal-overlay"><i class="fas fa-expand"></i></div></div>
+        </div>
+        <div class="gal-item">
+          <div class="gal-inner"><i class="fas fa-music"></i><div class="gal-overlay"><i class="fas fa-expand"></i></div></div>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:1.5rem;font-size:0.82rem;color:var(--gray);">
+        <i class="fas fa-info-circle"></i> Reemplaza los íconos con fotografías reales del instituto para una presentación más completa.
+      </p>
+    </div>
+  </section>
+
+  <!-- NOTICIAS -->
+  <section id="noticias">
+    <div class="container">
+      <p class="section-label"><i class="fas fa-newspaper"></i> Actualizaciones</p>
+      <h2 class="section-title">Noticias del Establecimiento</h2>
+      <div class="noticias-grid">
+
+        <div class="noticia-featured reveal">
+          <div class="noticia-featured-img">
+            <i class="fas fa-medal"></i>
+            <span class="noticia-cat">Logros</span>
+          </div>
+          <div class="noticia-featured-body">
+            <h3>Estudiantes del INEB "Domingo Juarros" Brillan en Olimpiada Matemática Departamental</h3>
+            <p>Tres estudiantes de 3ero Básico representaron con orgullo al instituto en la Olimpiada Matemática Departamental de Izabal, logrando los primeros tres lugares en la categoría básico. Este resultado es producto del esfuerzo conjunto de docentes y alumnos durante todo el ciclo escolar 2025.</p>
+            <div class="noticia-meta">
+              <span><i class="fas fa-calendar-alt"></i> 10 de marzo, 2026</span>
+              <span><i class="fas fa-user"></i> Dirección Académica</span>
+              <span><i class="fas fa-tag"></i> Logros</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="noticias-sidebar">
+          <div class="noticia-mini reveal">
+            <div class="noticia-mini-img"><i class="fas fa-tree"></i></div>
+            <div class="noticia-mini-body">
+              <h4>Jornada de Reforestación en el Instituto</h4>
+              <small><i class="fas fa-calendar-alt"></i> 5 de marzo, 2026</small>
+            </div>
+          </div>
+          <div class="noticia-mini reveal">
+            <div class="noticia-mini-img"><i class="fas fa-star"></i></div>
+            <div class="noticia-mini-body">
+              <h4>Premiación a Estudiantes Destacados — Bimestre 2</h4>
+              <small><i class="fas fa-calendar-alt"></i> 28 de feb., 2026</small>
+            </div>
+          </div>
+          <div class="noticia-mini reveal">
+            <div class="noticia-mini-img"><i class="fas fa-basketball-ball"></i></div>
+            <div class="noticia-mini-body">
+              <h4>Campeonato Deportivo Intercolegial Izabal 2026</h4>
+              <small><i class="fas fa-calendar-alt"></i> 20 de feb., 2026</small>
+            </div>
+          </div>
+          <div class="noticia-mini reveal">
+            <div class="noticia-mini-img"><i class="fas fa-seedling"></i></div>
+            <div class="noticia-mini-body">
+              <h4>Capacitación Docente en Nuevas Metodologías</h4>
+              <small><i class="fas fa-calendar-alt"></i> 14 de feb., 2026</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO STRIP -->
+  <div class="contacto-strip">
+    <div class="container">
+      <h2>¿Tienes preguntas? Estamos aquí para ayudarte</h2>
+      <p>Comunícate directamente con la dirección del instituto por WhatsApp o visítanos en persona.</p>
+      <div class="contacto-btns">
+        <a href="https://wa.me/50241422653" class="btn-primary"><i class="fab fa-whatsapp"></i> WhatsApp Directo</a>
+        <a href="tel:+50241422653" class="btn-outline"><i class="fas fa-phone"></i> +502 4142 2653</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <div class="footer-logo-circle">DJ</div>
+            <strong>INEB "Domingo Juarros"</strong>
+          </div>
+          <p>Instituto Nacional de Educación Básica comprometido con la formación integral de la juventud de Morales, Izabal, bajo los principios del Ministerio de Educación de Guatemala.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#academico">Académico</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#noticias">Noticias</a></li>
+            <li><a href="#descargas">Descargas</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Grados</h4>
+          <ul>
+            <li><a href="#academico">Primero Básico</a></li>
+            <li><a href="#academico">Segundo Básico</a></li>
+            <li><a href="#academico">Tercero Básico</a></li>
+            <li><a href="#descargas">Material Didáctico</a></li>
+            <li><a href="#avisos">Tablón de Avisos</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <div class="footer-contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Morales, Izabal, Guatemala</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-phone"></i>
+            <a href="tel:+50241422653" style="color:rgba(255,255,255,0.6);text-decoration:none;">+502 4142 2653</a>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fab fa-whatsapp"></i>
+            <a href="https://wa.me/50241422653" style="color:rgba(255,255,255,0.6);text-decoration:none;">WhatsApp Oficial</a>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-clock"></i>
+            <span>Lun – Vie: 7:00 – 13:00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 INEB "Domingo Juarros" · Morales, Izabal · MINEDUC Guatemala</p>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <div class="whatsapp-float">
+    <span class="wa-tooltip"><i class="fab fa-whatsapp"></i> Consúltanos por WhatsApp</span>
+    <a href="https://wa.me/50241422653?text=Hola,%20me%20comunico%20desde%20la%20p%C3%A1gina%20web%20del%20INEB%20Domingo%20Juarros.%20Tengo%20una%20consulta." class="wa-btn" target="_blank" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <script>
+    // ══════════════════════════════
+    // HAMBURGER
+    // ══════════════════════════════
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // ══════════════════════════════
+    // NAV ACTIVE LINK
+    // ══════════════════════════════
+    const sections = document.querySelectorAll('section[id], .stats-strip, .contacto-strip');
+    const navAs = document.querySelectorAll('.nav-links a');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navAs.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+          });
+        }
+      });
+    }, { threshold: 0.35 });
+
+    document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+
+    // ══════════════════════════════
+    // SLIDER
+    // ══════════════════════════════
+    const track = document.getElementById('slidesTrack');
+    const dotsEl = document.getElementById('sliderDots');
+    const total = track.children.length;
+    let cur = 0, timer;
+
+    // Build dots
+    for (let i = 0; i < total; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(d);
+    }
+
+    function goTo(n) {
+      cur = (n + total) % total;
+      track.style.transform = `translateX(-${cur * 100}%)`;
+      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+      resetTimer();
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => goTo(cur + 1), 5000);
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => goTo(cur + 1));
+    document.getElementById('prevBtn').addEventListener('click', () => goTo(cur - 1));
+    resetTimer();
+
+    // Touch swipe
+    let startX = 0;
+    track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    track.addEventListener('touchend', e => {
+      const dx = startX - e.changedTouches[0].clientX;
+      if (Math.abs(dx) > 40) goTo(dx > 0 ? cur + 1 : cur - 1);
+    });
+
+    // ══════════════════════════════
+    // TABS DESCARGAS
+    // ══════════════════════════════
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.descargas-list').forEach(l => l.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // ══════════════════════════════
+    // SCROLL REVEAL
+    // ══════════════════════════════
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 60);
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+  </script>
+</body>
+</html>
